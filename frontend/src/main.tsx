@@ -8,8 +8,6 @@ import AppErrorBridge from './components/AppErrorBridge';
 import PanelView from './components/PanelView';
 import InicioView from './views/InicioView';
 import ConfiguracoesView from './views/ConfiguracoesView';
-import UsuariosView from './views/UsuariosView';
-import AdminView from './views/AdminView';
 import AuditoriaView from './views/AuditoriaView';
 import LoginView from './views/LoginView';
 
@@ -35,9 +33,7 @@ const routes = createBrowserRouter([
         children: [
           { path: '', element: <InicioView /> },
           { path: 'configuracoes', element: <ConfiguracoesView /> },
-          { path: 'admin', element: <AdminView /> },
-          { path: 'admin/usuarios', element: <UsuariosView /> },
-          { path: 'admin/auditoria', element: <AuditoriaView /> },
+          { path: 'auditoria', element: <AuditoriaView /> },
         ],
       },
     ],

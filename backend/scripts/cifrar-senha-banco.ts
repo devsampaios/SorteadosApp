@@ -6,7 +6,7 @@
 // Usa a crypto.secret do config.json local (backend/config.json). Se o
 // ambiente-alvo (ex.: homologação) tiver uma crypto.secret diferente da
 // local, rode este script com o config.json daquele ambiente em mãos.
-import { criptografarDeterministico } from "../src/helpers/crypto";
+import { encryptDeterministic } from "../src/Helper/crypto";
 import configJson from "../config.json";
 
 const LINHA = "==========================================================================";
@@ -68,7 +68,7 @@ async function main() {
     return;
   }
 
-  const cifrado = criptografarDeterministico(configJson.crypto.secret, senha);
+  const cifrado = encryptDeterministic(senha, configJson.crypto.secret);
 
   console.log();
   console.log("Cole isto em database.password no config.json:");

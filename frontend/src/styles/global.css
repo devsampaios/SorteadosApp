@@ -5,40 +5,44 @@
    "punch". Baseado no design-engineering do Emil Kowalski. Usadas em toda
    transição/animação de UI do app. */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
-  --fonte-titulo: 'Newsreader', Georgia, serif;
-  --fonte-corpo: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --fonte-titulo: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fonte-corpo: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Dezenas, tabelas e qualquer número que precise alinhar coluna a coluna. */
+  --fonte-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --cor-fundo: #fffef3;
-  --cor-fundo-card: #ffffff;
-  --cor-fundo-input: #fffdf2;
-  --cor-borda: #fbe3ad;
-  --cor-primaria: #f8a833;
-  --cor-primaria-hover: #f0990f;
-  --cor-sobre-primaria: #3b2a12;
-  --cor-secundaria: #fabe5f;
-  --cor-laranja: #f8a833;
-  --cor-creme: #ffffe3;
-  --cor-branco: #ffffff;
-  --cor-texto: #3b2a12;
-  --cor-texto-suave: #97723a;
-  --cor-erro: #d64545;
-  --cor-sucesso: #2f9e5c;
-  --cor-sidebar: #ffffff;
-  --cor-header: #ffffff;
-  --cor-chrome: rgba(255, 255, 255, 0.82);
+  /* Escala de grafite: fundo -> cartao -> campo -> borda. */
+  --cor-fundo: #0b0e13;
+  --cor-fundo-card: #11151c;
+  --cor-fundo-input: #1a1f28;
+  --cor-borda: #2a313d;
+  /* Ambar: marca, acao primaria e dezena sorteada. Texto sobre ele e sempre escuro. */
+  --cor-primaria: #f0b429;
+  --cor-primaria-hover: #ffd166;
+  --cor-sobre-primaria: #0b0e13;
+  --cor-secundaria: #19b6a8;
+  --cor-laranja: #f0b429;
+  --cor-creme: #1a1f28;
+  --cor-branco: #e6eaf0;
+  --cor-texto: #e6eaf0;
+  --cor-texto-suave: #8b96a6;
+  --cor-erro: #e5484d;
+  --cor-sucesso: #19b6a8;
+  --cor-sidebar: #11151c;
+  --cor-header: #11151c;
+  --cor-chrome: rgba(17, 21, 28, 0.82);
 
   --largura-sidebar: 220px;
   --raio: 12px;
   /* Arredondamento diagonal: apenas canto superior-esquerdo e inferior-direito. */
   --raio-diag: var(--raio) 0;
-  --sombra: 0 1px 2px rgba(120, 80, 10, 0.06), 0 8px 28px rgba(120, 80, 10, 0.10);
-  --sombra-forte: 0 2px 8px rgba(120, 80, 10, 0.10), 0 22px 60px rgba(120, 80, 10, 0.18);
+  --sombra: 0 1px 2px rgba(0, 0, 0, 0.30), 0 8px 28px rgba(0, 0, 0, 0.40);
+  --sombra-forte: 0 2px 8px rgba(0, 0, 0, 0.40), 0 22px 60px rgba(0, 0, 0, 0.55);
 }
 
 /* Respeita quem pediu menos movimento no sistema. */

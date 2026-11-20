@@ -1,0 +1,12 @@
+// Uma linha por dezena sorteada (6 por concurso na Mega, 15 na Lotofácil).
+// Base das estatísticas: frequência, atraso, quadrantes, conferência.
+model ConcursoDezena {
+  concursoId BigInt @map("concurso_id")
+  dezena     Int
+
+  concurso Concurso @relation(fields: [concursoId], references: [id], onDelete: Cascade)
+
+  @@id([concursoId, dezena])
+  @@index([dezena])
+  @@map("concursodezena")
+}

@@ -1,6 +1,6 @@
 model Usuario {
-  id    BigInt @id @default(autoincrement())
-  login String @unique
+  id    BigInt  @id @default(autoincrement())
+  login String  @unique
   // Hash bcrypt da senha (gerado com `npm run criptografar-senha`).
   senha String
   nome  String?

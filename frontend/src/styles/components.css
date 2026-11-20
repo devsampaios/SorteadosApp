@@ -527,7 +527,7 @@ input[type="date"].input::-webkit-calendar-picker-indicator {
   content: "";
   display: block;
   width: 5px; height: 9px;
-  border: 2px solid #fff;
+  border: 2px solid var(--cor-sobre-primaria);
   border-top: none; border-left: none;
   transform: rotate(42deg) translateY(-1px);
 }
@@ -841,7 +841,7 @@ input[type="date"].input::-webkit-calendar-picker-indicator {
 }
 
 /* ── Button variants extras ── */
-.btn--danger  { background: var(--cor-erro); color: #fff; }
+.btn--danger  { background: var(--cor-erro); color: var(--cor-sobre-primaria); }
 .btn--danger:hover:not(:disabled) { opacity: 0.88; }
 .btn--success { background: var(--cor-sucesso); color: var(--cor-sobre-primaria); }
 .btn--success:hover:not(:disabled) { opacity: 0.88; }
@@ -970,10 +970,10 @@ input[type="date"].input::-webkit-calendar-picker-indicator {
 .tipo-toggle__op--entrada:hover { border-color: var(--cor-sucesso); color: var(--cor-sucesso); }
 .tipo-toggle__op--saida:hover   { border-color: var(--cor-erro); color: var(--cor-erro); }
 .tipo-toggle__op--entrada.tipo-toggle__op--ativo {
-  background: var(--cor-sucesso); border-color: var(--cor-sucesso); color: #fff;
+  background: var(--cor-sucesso); border-color: var(--cor-sucesso); color: var(--cor-sobre-primaria);
 }
 .tipo-toggle__op--saida.tipo-toggle__op--ativo {
-  background: var(--cor-erro); border-color: var(--cor-erro); color: #fff;
+  background: var(--cor-erro); border-color: var(--cor-erro); color: var(--cor-sobre-primaria);
 }
 
 /* ── Seletor de tema ── */

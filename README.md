@@ -60,6 +60,24 @@ de usuários e à auditoria.
 
 - **Situação:** `1` = ATIVO (padrão), `2` = BLOQUEADO, `3` = EXCLUIDO.
 
+### Importar os sorteios antigos
+
+Os resultados históricos são importados das planilhas da Caixa (.xlsx):
+
+```bash
+npm run importar-sorteios -- "../Mega-Sena (2) - cópia.xlsx" MEGA_SENA
+npm run importar-sorteios -- "../Lotofácil - cópia.xlsx" LOTOFACIL
+```
+
+Pode ser rodado de novo com uma planilha mais nova: cada concurso é identificado
+por loteria + número e atualizado, sem duplicar.
+
+Tabelas:
+- `loteria`: tipo de loteria e regras (dezenas sorteadas, faixa, mín./máx. por aposta).
+- `concurso`: um sorteio (número, data, arrecadação, acumulados, observação).
+- `concursodezena`: uma linha por dezena sorteada (base das estatísticas).
+- `concursopremiacao`: faixas de prêmio (acertos, ganhadores, rateio, cidades).
+
 ## 3. Frontend (`frontend/`)
 
 ```bash
@@ -85,4 +103,5 @@ npm run dev
 - `npm run build` / `npm start`: build de produção
 - `npm run setup-tabelas`: sincroniza o schema do Prisma com o banco
 - `npm run criptografar-senha`: gera o hash bcrypt de uma senha
+- `npm run importar-sorteios -- <arquivo.xlsx> <MEGA_SENA|LOTOFACIL>`: importa resultados
 - `npm run cifrar-senha`: cifra a senha do banco para o `config.json`

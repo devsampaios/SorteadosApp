@@ -1,0 +1,14 @@
+// Faixas de prêmio do concurso: Mega 6/5/4 acertos, Lotofácil 15/14/13/12/11.
+model ConcursoPremiacao {
+  concursoId      BigInt  @map("concurso_id")
+  acertos         Int
+  ganhadores      Int
+  rateio          Decimal @db.Decimal(15, 2)
+  // Cidades/UF dos ganhadores (só na faixa principal), ex: "ITURAMA/MG; SAO PAULO/SP".
+  localGanhadores String? @map("localganhadores")
+
+  concurso Concurso @relation(fields: [concursoId], references: [id], onDelete: Cascade)
+
+  @@id([concursoId, acertos])
+  @@map("concursopremiacao")
+}

@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Eye } from 'lucide-react';
-import Form from '../components/Form';
+import Form, { type FormHandle } from '../components/Form';
+import AuditoriaFiltros from '../components/AuditoriaFiltros';
+import { FILTRO_AUDITORIA_VAZIO, paramsDoFiltro, type FiltroAuditoria } from '../utils/auditoria';
 import AuditoriaDetalheModal, { type AuditoriaItem } from '../components/AuditoriaDetalheModal';
 
 const formatarDataHora = (iso: string | null): string => {
@@ -40,16 +42,25 @@ const SituacaoBadge = ({ situacao }: { situacao: string }) => {
 
 export default function AuditoriaView() {
 	const [selecionada, setSelecionada] = useState<AuditoriaItem | null>(null);
+	const formRef = useRef<FormHandle>(null);
+	const filtroRef = useRef<FiltroAuditoria>(FILTRO_AUDITORIA_VAZIO);
+
+	const filtrar = (filtro: FiltroAuditoria) => {
+		filtroRef.current = filtro;
+		formRef.current?.filtrar();
+	};
 
 	return (
 		<>
+			<AuditoriaFiltros onFiltrar={filtrar} />
 			<Form
+				ref={formRef}
 				titulo='Auditoria'
+				filtroExtra={() => paramsDoFiltro(filtroRef.current)}
 				url='/auditorias'
 				ordenacaoPadrao='id desc'
 				esconderNovo
 				esconderFiltro
-				esconderNavegacao
 				esconderAcoes
 				aoAbrirLinha={(item) => setSelecionada(item as AuditoriaItem)}
 				getAcoesDaTabela={(item) => {

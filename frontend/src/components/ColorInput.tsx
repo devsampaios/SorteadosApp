@@ -12,7 +12,7 @@ interface ColorInputProps {
   id?: string;
 }
 
-const COR_PADRAO = "#f8a833";
+const COR_PADRAO = "#f0b429";
 
 // Seletor de cor: swatch nativo + campo hex. Controlado (value) ou não
 // (defaultValue). O input[type=color] exige um hex válido; o campo hex deixa

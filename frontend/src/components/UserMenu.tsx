@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, Settings, Shield } from "lucide-react";
+import { LogOut, ScrollText, Settings } from "lucide-react";
 import { useAuth } from "../context/authContext";
 
 interface UserMenuProps {
@@ -30,9 +30,9 @@ export function UserMenu({ abrirPara = "baixo" }: UserMenuProps) {
     navigate("/configuracoes");
   };
 
-  const irParaAdmin = () => {
+  const irParaAuditoria = () => {
     setAberto(false);
-    navigate("/admin");
+    navigate("/auditoria");
   };
 
   const sair = () => {
@@ -57,8 +57,8 @@ export function UserMenu({ abrirPara = "baixo" }: UserMenuProps) {
           <button type="button" className="user-menu__item" onClick={irParaConfiguracoes}>
             <Settings size={16} /> Configurações
           </button>
-          <button type="button" className="user-menu__item" onClick={irParaAdmin}>
-            <Shield size={16} /> Admin
+          <button type="button" className="user-menu__item" onClick={irParaAuditoria}>
+            <ScrollText size={16} /> Auditoria
           </button>
           <button type="button" className="user-menu__item user-menu__item--perigo" onClick={sair}>
             <LogOut size={16} /> Sair

@@ -4,6 +4,14 @@ import type { PageOptions, Page } from "../Helper/Paginar";
 
 export interface FiltroAuditoria extends PageOptions {
   situacao?: string;
+  acao?: string;
+  rota?: string;
+  /** Parte do login do usuário. */
+  usuario?: string;
+  /** Instante inicial (ISO), inclusivo. O front manda o início do dia local. */
+  dataInicio?: Date;
+  /** Instante final (ISO), inclusivo. O front manda o fim do dia local. */
+  dataFim?: Date;
 }
 
 export type AuditoriaComUsuario = Prisma.AuditoriaGetPayload<{

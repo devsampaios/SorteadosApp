@@ -1,6 +1,8 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Sorteados",
+  "short_name": "Sorteados",
+  "description": "Palpites de loteria a partir dos números já sorteados.",
+  "lang": "pt-BR",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +17,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#f0b429",
+  "background_color": "#0b0e13",
   "display": "standalone"
 }

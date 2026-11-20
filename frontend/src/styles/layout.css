@@ -238,7 +238,7 @@
   font-weight: 800;
   color: var(--cor-sobre-primaria);
   margin-bottom: 10px;
-  box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+  box-shadow: 0 4px 20px rgba(240, 180, 41, 0.28);
 }
 
 .login-mobile-logo__name {

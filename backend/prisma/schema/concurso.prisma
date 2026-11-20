@@ -1,0 +1,23 @@
+// Um sorteio realizado de uma loteria.
+model Concurso {
+  id                BigInt   @id @default(autoincrement())
+  loteriaId         BigInt   @map("loteria_id")
+  numero            Int
+  data              DateTime @db.Date
+  arrecadacaoTotal  Decimal? @map("arrecadacaototal") @db.Decimal(15, 2)
+  // Acumulado da faixa principal para o próximo concurso.
+  acumulado         Decimal? @db.Decimal(15, 2)
+  estimativaPremio  Decimal? @map("estimativapremio") @db.Decimal(15, 2)
+  // Acumulado do sorteio especial (Mega da Virada / Lotofácil da Independência).
+  acumuladoEspecial Decimal? @map("acumuladoespecial") @db.Decimal(15, 2)
+  observacao        String?
+  criadoEm          DateTime @default(now()) @map("criadoem")
+
+  loteria    Loteria             @relation(fields: [loteriaId], references: [id])
+  dezenas    ConcursoDezena[]
+  premiacoes ConcursoPremiacao[]
+
+  @@unique([loteriaId, numero])
+  @@index([loteriaId, data])
+  @@map("concurso")
+}

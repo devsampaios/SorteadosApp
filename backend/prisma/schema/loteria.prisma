@@ -1,0 +1,17 @@
+// Tipo de loteria e suas regras (Mega-Sena, Lotofácil...). Carregado pelo
+// script importar-sorteios; nova loteria = novo registro, sem tabela nova.
+model Loteria {
+  id               BigInt  @id @default(autoincrement())
+  codigo           String  @unique
+  nome             String
+  dezenasSorteadas Int     @map("dezenassorteadas")
+  menorDezena      Int     @map("menordezena")
+  maiorDezena      Int     @map("maiordezena")
+  minDezenasAposta Int     @map("mindezenasaposta")
+  maxDezenasAposta Int     @map("maxdezenasaposta")
+  ativo            Boolean @default(true)
+
+  concursos Concurso[]
+
+  @@map("loteria")
+}

@@ -1,5 +1,7 @@
 import { createHash, createHmac, createCipheriv, createDecipheriv, randomBytes } from "crypto";
-import { config } from "../config";
+// Lê o config.json direto (e não ../config) para não criar import circular:
+// o config usa decrypt() daqui para abrir a senha do banco.
+import configJson from "../../config.json";
 
 const CODE_ALPHABET = "ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789";
 
@@ -33,7 +35,7 @@ function deterministicIv(key: Buffer, plaintext: string): Buffer {
 }
 
 export function encryptDeterministic(plaintext: string, secret?: string): string {
-  const key = deriveKey(secret ?? config.crypto.secret);
+  const key = deriveKey(secret ?? configJson.crypto.secret);
   const iv = deterministicIv(key, plaintext);
   const cipher = createCipheriv(ALGORITHM, key, iv);
   const encrypted = Buffer.concat([cipher.update(plaintext, "utf8"), cipher.final()]);
@@ -42,7 +44,7 @@ export function encryptDeterministic(plaintext: string, secret?: string): string
 }
 
 export function decrypt(blob: string, secret?: string): string {
-  const key = deriveKey(secret ?? config.crypto.secret);
+  const key = deriveKey(secret ?? configJson.crypto.secret);
   const data = Buffer.from(blob, "base64");
   const iv = data.subarray(0, IV_LENGTH);
   const tag = data.subarray(data.length - TAG_LENGTH);
