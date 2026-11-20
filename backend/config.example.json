@@ -1,0 +1,35 @@
+{
+  "app": {
+    "port": 3000,
+    "env": "development"
+  },
+  "cors": {
+    "origins": [
+      "*"
+    ]
+  },
+  "uploads": {
+    "dir": "./uploads"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "postgres",
+    "password": "postgres",
+    "database": "learning"
+  },
+  "firebase": {
+    "projectId": "",
+    "clientEmail": "",
+    "privateKey": ""
+  },
+  "jobs": {
+    "ativo": true
+  },
+  "jwt": {
+    "secret": "troque-por-uma-string-longa-e-aleatoria"
+  },
+  "crypto": {
+    "secret": "troque-por-outra-string-longa-e-aleatoria"
+  }
+}

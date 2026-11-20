@@ -1,0 +1,129 @@
+/* Select — picker de entidade: busca assíncrona (getFilterUrl) ou lista
+   estática (options), com opção de abrir uma sub-view (formularioPadrao). */
+.ci-sel {
+  position: relative;
+  width: 100%;
+}
+
+.ci-sel__control {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.ci-sel__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 40px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: var(--fonte-corpo);
+  color: var(--cor-texto);
+  background: var(--cor-fundo-input);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  outline: none;
+  transition: border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+}
+
+.ci-sel__input:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-primaria) 14%, transparent);
+}
+
+.ci-sel__input::placeholder { color: var(--cor-texto-suave); }
+
+/* Campo com item selecionado (somente leitura). */
+.ci-sel__value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 8px 8px 8px 12px;
+  font-size: 14px;
+  color: var(--cor-texto);
+  background: var(--cor-fundo-input);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.ci-sel__value-texto {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ci-sel__btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 100%;
+  color: var(--cor-texto-suave);
+  background: transparent;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  cursor: pointer;
+  transition: border-color 0.15s var(--ease-out), color 0.15s var(--ease-out);
+}
+
+.ci-sel__value .ci-sel__btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+}
+
+.ci-sel__btn:hover:not(:disabled) {
+  color: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+}
+
+.ci-sel__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Dropdown de resultados. */
+.ci-sel__dropdown {
+  position: absolute;
+  z-index: 2000;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 260px;
+  overflow-y: auto;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-diag);
+  box-shadow: var(--sombra);
+  padding: 4px;
+}
+
+.ci-sel__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--cor-texto);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ci-sel__item:hover { background: color-mix(in srgb, var(--cor-primaria) 14%, transparent); }
+
+.ci-sel__vazio {
+  padding: 10px;
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+
+/* Modal do formularioPadrao (sub-view em modo seleção). */
+.ci-sel__modal-body {
+  height: min(70vh, 620px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}

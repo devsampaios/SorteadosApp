@@ -1,0 +1,47 @@
+/* ColorInput — swatch (input nativo de cor) + campo hex ao lado. */
+.ci-color {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ci-color__swatch {
+  width: 44px;
+  height: 40px;
+  padding: 2px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-fundo-input);
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.ci-color__swatch::-webkit-color-swatch-wrapper { padding: 0; }
+.ci-color__swatch::-webkit-color-swatch { border: none; border-radius: 8px; }
+.ci-color__swatch::-moz-color-swatch { border: none; border-radius: 8px; }
+
+.ci-color__hex {
+  width: 120px;
+  height: 40px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: var(--fonte-corpo);
+  text-transform: uppercase;
+  color: var(--cor-texto);
+  background: var(--cor-fundo-input);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  outline: none;
+  transition: border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+}
+
+.ci-color__hex:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-primaria) 14%, transparent);
+}
+
+.ci-color__swatch:disabled,
+.ci-color__hex:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

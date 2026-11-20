@@ -1,0 +1,288 @@
+/* ── Shell da aplicação ── */
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--largura-sidebar) 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  grid-area: sidebar;
+  background: var(--cor-sidebar);
+  border-right: 1px solid var(--cor-borda);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar__logo {
+  padding: 0 20px 20px;
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  border-bottom: 1px solid var(--cor-borda);
+  margin-bottom: 12px;
+}
+
+.sidebar__nav { display: flex; flex-direction: column; gap: 2px; padding: 8px 0; }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-left: 3px solid transparent;
+  border-radius: 0;
+  color: var(--cor-texto-suave);
+  cursor: pointer;
+  transition: background 0.15s var(--ease-out), color 0.15s var(--ease-out), border-color 0.15s var(--ease-out);
+  font-size: 14px;
+  background: none;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+}
+.nav-item:hover {
+  background: color-mix(in srgb, var(--cor-primaria) 12%, transparent);
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+.nav-item--ativo {
+  background: color-mix(in srgb, var(--cor-primaria) 18%, transparent);
+  color: var(--cor-texto);
+  border-left-color: var(--cor-primaria);
+  font-weight: 600;
+}
+.nav-item--ativo:hover {
+  background: color-mix(in srgb, var(--cor-primaria) 24%, transparent);
+  color: var(--cor-texto);
+}
+
+.sidebar__rodape {
+  margin-top: auto;
+  padding: 12px 16px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+/* ── Header (mobile only — no desktop a logo/tema/perfil já vivem na sidebar) ── */
+.header {
+  display: none;
+  grid-area: header;
+  /* Material translúcido: o conteúdo rola por baixo e aparece desfocado. */
+  background: var(--cor-chrome);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid color-mix(in srgb, var(--cor-borda) 55%, transparent);
+  padding: 0 24px;
+  height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  min-width: 0;
+}
+
+.header__titulo { font-family: var(--fonte-titulo); font-size: 20px; font-weight: 600; color: var(--cor-primaria); }
+.header__acoes { display: flex; align-items: center; gap: 12px; }
+
+/* ── Main ── */
+.main-content {
+  grid-area: main;
+  padding: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* ── Bottom nav (mobile only) ── */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* Material translúcido: o conteúdo da lista some suavemente sob o menu. */
+  background: var(--cor-chrome);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid color-mix(in srgb, var(--cor-borda) 55%, transparent);
+  /* Sobe um pouco os ícones e respeita a safe-area (telas arredondadas / com
+     película de borda), sem colar na base do aparelho. */
+  padding: 10px 12px calc(env(safe-area-inset-bottom, 0px) + 12px);
+  z-index: 100;
+}
+.bottom-nav__items { display: flex; justify-content: space-around; }
+.bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 16px;
+  color: var(--cor-texto-suave);
+  font-size: 10px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-decoration: none;
+  transition: transform 0.12s var(--ease-out), color 0.15s var(--ease-out);
+}
+.bottom-nav__item:active { transform: scale(0.92); }
+.bottom-nav__item--ativo { color: var(--cor-primaria); }
+
+/* ── Login page ── */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  background: var(--cor-fundo);
+}
+
+/* Painel esquerdo (branding) – visível apenas no desktop */
+.login-branding {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 56px;
+  background: var(--cor-sidebar);
+  border-right: 1px solid var(--cor-borda);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-branding::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 25% 65%, color-mix(in srgb, var(--cor-primaria) 20%, transparent) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.login-branding__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 56px;
+  position: relative;
+}
+
+.login-branding__logo-name {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.login-branding__headline {
+  font-family: var(--fonte-titulo);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  line-height: 1.3;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.login-branding__headline span {
+  color: var(--cor-primaria);
+}
+
+.login-branding__sub {
+  font-size: 14px;
+  color: var(--cor-texto-suave);
+  line-height: 1.65;
+  max-width: 320px;
+  position: relative;
+}
+
+/* Painel direito (formulário) */
+.login-form-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  overflow-y: auto;
+}
+
+/* Logo mobile – visível apenas em telas pequenas */
+.login-mobile-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.login-mobile-logo__icon {
+  width: 56px;
+  height: 56px;
+  background: var(--cor-primaria);
+  border-radius: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--cor-sobre-primaria);
+  margin-bottom: 10px;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+}
+
+.login-mobile-logo__name {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+.login-card {
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-diag);
+  padding: 36px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--sombra);
+}
+
+.login-card__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.login-card__subtitulo {
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+  margin-bottom: 28px;
+}
+
+.login-card__divisor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  color: var(--cor-texto-suave);
+  font-size: 12px;
+}
+.login-card__divisor::before,
+.login-card__divisor::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--cor-borda);
+}

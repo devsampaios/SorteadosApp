@@ -1,0 +1,1025 @@
+/* ── Tipografia de títulos (Apple §15) ──────────────────────────────────
+   Texto grande com tracking 0 lê "espaçado demais". Tracking negativo e leading
+   apertado dão presença; o corpo fica com leading confortável (global.css). */
+.login-card__titulo,
+.login-branding__headline,
+.login-branding__logo-name,
+.login-mobile-logo__name,
+.sidebar__logo,
+.header__titulo,
+.secao-header__titulo,
+.overlay__titulo,
+.u-modal__titulo {
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* ── Inputs ── */
+.input-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.input-group label { font-size: 13px; font-weight: 500; color: var(--cor-texto-suave); }
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--cor-fundo-input);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  color: var(--cor-texto);
+  font-size: 14px;
+  transition: border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+  outline: none;
+}
+/* Anel de foco sutil, além da borda — deixa claro qual campo está ativo. */
+.input:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-primaria) 14%, transparent);
+}
+.input::placeholder { color: var(--cor-texto-suave); }
+
+/* input[type=date] no iOS/Safari tem render próprio (texto centralizado, altura
+   e aparência diferentes). Normaliza pra ficar igual aos demais campos. */
+input[type="date"].input {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 42px;
+  text-align: left;
+}
+input[type="date"].input::-webkit-date-and-time-value {
+  text-align: left;
+  margin: 0;
+}
+input[type="date"].input::-webkit-calendar-picker-indicator {
+  margin-left: auto;
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+/* ── Botões ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--raio);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s var(--ease-out), border-color 0.15s var(--ease-out),
+    color 0.15s var(--ease-out), transform 0.12s var(--ease-out), opacity 0.15s var(--ease-out);
+  width: 100%;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+/* Feedback de pressão: o botão "afunda" um tico ao ser clicado — faz a UI
+   parecer que ouviu o usuário. Subtil (0.97) e não vale em botão desabilitado. */
+.btn:active:not(:disabled) { transform: scale(0.97); }
+
+.btn--primario { background: var(--cor-primaria); color: var(--cor-sobre-primaria); }
+.btn--primario:hover:not(:disabled) { background: var(--cor-primaria-hover); }
+
+.btn--secundario {
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto);
+  border: 1px solid var(--cor-borda);
+}
+.btn--secundario:hover:not(:disabled) { border-color: var(--cor-primaria); color: var(--cor-primaria); }
+
+.btn--ghost { background: transparent; color: var(--cor-texto-suave); }
+.btn--ghost:hover:not(:disabled) { color: var(--cor-texto); background: var(--cor-fundo-card); }
+
+.btn--sm   { padding: 6px 14px; font-size: 13px; width: auto; }
+.btn--auto { width: auto; }
+
+/* ── Cards ── */
+.card {
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-diag);
+  padding: 20px;
+  box-shadow: var(--sombra);
+}
+
+.cards-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* ── Erro / feedback ── */
+.erro-texto { color: var(--cor-erro); font-size: 12px; margin-top: 4px; }
+.sucesso-texto { color: var(--cor-sucesso); font-size: 12px; margin-top: 4px; }
+
+/* ── Avatar / ícone ── */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--cor-primaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-sobre-primaria);
+  flex-shrink: 0;
+}
+.avatar--botao {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  transition: opacity 0.15s;
+}
+.avatar--botao:hover { opacity: 0.85; }
+
+/* ── Menu do usuário (avatar + popup com tema/config/sair) ── */
+.user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.user-menu__gatilho {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 4px;
+  border: none;
+  background: none;
+  border-radius: var(--raio);
+  cursor: pointer;
+  color: var(--cor-texto);
+  transition: background 0.15s;
+}
+.user-menu__gatilho:hover { background: var(--cor-fundo); }
+.user-menu__nome {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+.user-menu__popup {
+  position: absolute;
+  right: 0;
+  min-width: 200px;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-diag);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 200;
+}
+.user-menu__popup--baixo { top: calc(100% + 8px); }
+.user-menu__popup--cima { bottom: calc(100% + 8px); }
+.user-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: none;
+  background: none;
+  border-radius: calc(var(--raio) - 4px);
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--cor-texto);
+  text-align: left;
+  width: 100%;
+}
+.user-menu__item:hover { background: var(--cor-fundo); }
+.user-menu__item--perigo { color: var(--cor-erro); }
+
+/* ── Toasts ── */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 360px;
+  width: calc(100vw - 48px);
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--raio-diag);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  animation: toast-in 0.2s var(--ease-out);
+  border-left: 4px solid transparent;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.toast--erro    { background: var(--cor-fundo-card); border-left-color: var(--cor-erro); color: var(--cor-texto); }
+.toast--info    { background: var(--cor-fundo-card); border-left-color: var(--cor-primaria); color: var(--cor-texto); }
+.toast--sucesso { background: var(--cor-fundo-card); border-left-color: var(--cor-sucesso); color: var(--cor-texto); }
+
+.toast__mensagem { flex: 1; line-height: 1.4; }
+
+.toast__fechar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--cor-texto-suave);
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  flex-shrink: 0;
+}
+.toast__fechar:hover { color: var(--cor-texto); }
+
+/* ── Tabela ── */
+.tabela-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.secao-header__novo {
+  background: none;
+  border: none;
+  color: var(--cor-primaria);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color 0.15s var(--ease-out), transform 0.12s var(--ease-out);
+}
+.secao-header__novo:hover { color: var(--cor-primaria-hover); }
+.secao-header__novo:active { transform: scale(0.92); }
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.tabela th {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--cor-borda);
+  color: var(--cor-texto-suave);
+  font-weight: 600;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  background: var(--cor-fundo);
+  z-index: 1;
+}
+
+.tabela td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+}
+
+.tabela th.acoes,
+.tabela td.acoes { text-align: right; white-space: nowrap; }
+
+.tabela th.num,
+.tabela td.num { text-align: right; white-space: nowrap; }
+
+.tabela tbody tr:hover { background: var(--cor-fundo-input); }
+.tabela tbody tr { cursor: default; }
+.tabela tbody tr.clicavel { cursor: pointer; }
+
+.tabela__vazio td {
+  text-align: center;
+  color: var(--cor-texto-suave);
+  padding: 24px;
+}
+
+/* ── Cabeçalho de grupo na listagem (ex.: agrupar por dia) ── */
+/* Tabela (desktop): a célula com colspan recebe o cabeçalho do dia. */
+.lista-grupo td {
+  padding: 16px 10px 6px;
+  border-bottom: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+}
+.tabela tbody tr.lista-grupo:hover { background: var(--cor-fundo); }
+/* Mobile (cards): espaço acima e uma linha divisória sutil. */
+.lista-grupo {
+  padding: 14px 2px 8px;
+}
+
+/* ── Cards mobile (lista) ── */
+.lista-card {
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-diag);
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  cursor: default;
+  background: var(--cor-fundo-card);
+}
+.lista-card.clicavel { cursor: pointer; }
+.lista-card.clicavel:hover { border-color: var(--cor-primaria); }
+
+.lista-card__campo { display: flex; gap: 4px; font-size: 13px; line-height: 1.6; }
+.lista-card__label { font-weight: 600; white-space: nowrap; }
+
+/* ── Navegador paginação ── */
+.navegador {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--cor-borda);
+  font-size: 12px;
+  color: var(--cor-texto-suave);
+}
+
+/* ── Cabeçalho de seção ── */
+.secao-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--cor-borda);
+  gap: 8px;
+}
+
+.secao-header__titulo {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.secao-header__acoes { display: flex; gap: 8px; align-items: center; }
+
+/* ── Overlay (ConteudoSobreposto) ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--cor-fundo);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--cor-borda);
+  flex-shrink: 0;
+}
+
+.overlay__titulo {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.overlay__fechar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--cor-texto-suave);
+  line-height: 1;
+  padding: 4px;
+}
+.overlay__fechar:hover { color: var(--cor-texto); }
+
+.overlay__conteudo { flex: 1; overflow: auto; }
+
+/* ── Sub-cadastro (FormDetails) ── */
+.sub-cadastro {
+  width: 100%;
+  margin-top: 8px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-diag);
+  overflow: hidden;
+}
+
+.sub-cadastro__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--cor-borda);
+  background: color-mix(in srgb, var(--cor-texto) 6%, var(--cor-fundo-card));
+}
+
+.sub-cadastro__novo {
+  background: none;
+  border: none;
+  color: var(--cor-primaria);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color 0.15s var(--ease-out), transform 0.12s var(--ease-out);
+}
+.sub-cadastro__novo:hover { color: var(--cor-primaria-hover); }
+.sub-cadastro__novo:active { transform: scale(0.92); }
+
+.sub-cadastro__titulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.sub-cadastro__form {
+  padding: 10px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.sub-cadastro__form-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* ════════════════════════════════════════
+   Utils — campos, modais, tabela, select
+   ════════════════════════════════════════ */
+
+/* ── Campo genérico ── */
+.u-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; }
+
+/* Campo compacto para filtros no cabeçalho: remove a margem e o espaço reservado
+   de erro do .u-field, deixando o controle com a mesma altura (40px) dos demais. */
+.filtro-compacto .u-field { margin-bottom: 0; }
+.filtro-compacto .u-field__error { display: none; }
+.u-field__label { font-size: 13px; font-weight: 500; color: var(--cor-texto-suave); }
+.u-field__label--required::after { content: " *"; color: var(--cor-erro); }
+.u-field__error { font-size: 12px; color: var(--cor-erro); min-height: 16px; }
+.u-field__desc { font-size: 12px; color: var(--cor-texto-suave); }
+
+/* ── Input com prefixo/sufixo ── */
+.u-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.u-input-wrapper .input { flex: 1; }
+.u-input-wrapper--prefix .input { padding-left: 36px; }
+.u-input-wrapper--suffix .input { padding-right: 40px; }
+
+.u-input-adornment {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+  user-select: none;
+}
+.u-input-adornment--left  { left: 12px; }
+.u-input-adornment--right { right: 12px; }
+
+/* ── Input com erro ── */
+.input--numerico { text-align: right; }
+.input--erro { border-color: var(--cor-erro) !important; }
+.input--erro:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-erro) 15%, transparent); }
+
+/* ── Toggle mostrar/ocultar senha ── */
+.u-pwd-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%; transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cor-texto-suave);
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+.u-pwd-toggle:hover { color: var(--cor-texto); background: var(--cor-fundo-input); }
+
+/* ── Checkbox customizado ── */
+.u-checkbox { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; user-select: none; }
+.u-checkbox input[type="checkbox"] { display: none; }
+
+.u-checkbox__box {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  border: 2px solid var(--cor-borda);
+  border-radius: 4px;
+  background: var(--cor-fundo-input);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s, background 0.15s;
+  margin-top: 1px;
+}
+.u-checkbox input:checked ~ .u-checkbox__box {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+}
+.u-checkbox input:checked ~ .u-checkbox__box::after {
+  content: "";
+  display: block;
+  width: 5px; height: 9px;
+  border: 2px solid #fff;
+  border-top: none; border-left: none;
+  transform: rotate(42deg) translateY(-1px);
+}
+.u-checkbox input:disabled ~ .u-checkbox__box { opacity: 0.45; cursor: not-allowed; }
+.u-checkbox:has(input:disabled) { cursor: not-allowed; }
+
+.u-checkbox__text { display: flex; flex-direction: column; gap: 2px; }
+.u-checkbox__label { font-size: 14px; font-weight: 500; color: var(--cor-texto); line-height: 1.3; }
+.u-checkbox__desc  { font-size: 12px; color: var(--cor-texto-suave); }
+
+/* ── Select nativo ── */
+.u-select-wrapper { position: relative; }
+.u-select-wrapper .input {
+  appearance: none;
+  padding-right: 32px;
+  cursor: pointer;
+}
+.u-select-wrapper::after {
+  content: "▾";
+  position: absolute;
+  right: 12px; top: 50%; transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 12px;
+  color: var(--cor-texto-suave);
+}
+
+/* ── FilterSelect (dropdown com busca) ── */
+.u-fselect { position: relative; }
+
+.u-fselect__dropdown {
+  position: absolute;
+  top: calc(100% + 4px); left: 0; right: 0;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-diag);
+  box-shadow: var(--sombra);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 200;
+  animation: fadein 0.14s var(--ease-out);
+}
+
+@keyframes fadein { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+.u-fselect__item {
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  font-size: 13px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--cor-texto);
+  border-bottom: 1px solid var(--cor-borda);
+  transition: background 0.1s;
+}
+.u-fselect__item:last-child { border-bottom: none; }
+.u-fselect__item:hover:not(:disabled) { background: var(--cor-fundo-input); color: var(--cor-primaria); }
+.u-fselect__item:disabled { opacity: 0.45; cursor: not-allowed; }
+.u-fselect__item--selected { color: var(--cor-primaria); font-weight: 500; }
+.u-fselect__vazio { padding: 10px 12px; font-size: 13px; color: var(--cor-texto-suave); }
+
+/* ── AsyncSelect (busca assíncrona via API) ── */
+.u-aselect { position: relative; }
+
+.u-aselect__row {
+  display: flex;
+  gap: 0;
+}
+
+.u-aselect__input {
+  flex: 1;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.u-aselect__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  background: var(--cor-fundo-input);
+  border: 1px solid var(--cor-borda);
+  border-left: none;
+  border-radius: 0 var(--raio) var(--raio) 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--cor-texto-suave);
+  transition: background 0.15s, color 0.15s;
+}
+.u-aselect__btn:hover:not(:disabled) { background: var(--cor-fundo-card); color: var(--cor-primaria); }
+.u-aselect__btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.u-aselect__btn--clear:hover:not(:disabled) { color: var(--cor-erro); }
+
+/* ── SearchBar ── */
+.u-searchbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  margin-bottom: 16px;
+}
+.u-searchbar__label { font-size: 13px; font-weight: 500; color: var(--cor-texto-suave); }
+.u-searchbar__row { display: flex; gap: 8px; align-items: stretch; }
+.u-searchbar__row .input { flex: 1; }
+
+@media (max-width: 600px) {
+  .u-searchbar__row { flex-direction: column; }
+}
+
+/* ── Table utils ── */
+.u-table-card {
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-diag);
+  overflow: hidden;
+}
+
+/* ── Lista de avaliações em cards (mobile) — evita o scroll horizontal da tabela ── */
+.aval-mobile { display: none; }
+.aval-mobile__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.aval-mobile__item:last-child { border-bottom: none; }
+.aval-mobile__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.aval-mobile__nome { font-weight: 600; min-width: 0; line-height: 1.3; }
+.aval-mobile__acoes { display: flex; gap: 2px; flex-shrink: 0; }
+.aval-mobile__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 12.5px;
+  color: var(--cor-texto-suave);
+}
+.aval-mobile__meta strong { color: var(--cor-texto); font-weight: 600; }
+.aval-mobile__nota { display: flex; align-items: center; gap: 8px; }
+.aval-mobile__nota-label { font-size: 12.5px; color: var(--cor-texto-suave); flex-shrink: 0; }
+.aval-mobile__nota .input { flex: 1; min-width: 0; height: 38px; }
+
+.u-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.u-table thead tr {
+  background: var(--cor-fundo-input);
+  border-bottom: 2px solid var(--cor-borda);
+}
+
+.u-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cor-texto-suave);
+  white-space: nowrap;
+}
+
+.u-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  vertical-align: middle;
+}
+
+.u-table tbody tr:last-child td { border-bottom: none; }
+.u-table tbody tr { transition: background 0.1s; }
+.u-table tbody tr:hover { background: var(--cor-fundo-input); }
+.u-table tbody tr.u-table__row--clicavel { cursor: pointer; }
+
+.u-table__loading {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 48px 24px; gap: 14px;
+  color: var(--cor-texto-suave);
+}
+
+.u-table__spinner {
+  width: 32px; height: 32px;
+  border: 3px solid var(--cor-borda);
+  border-top-color: var(--cor-primaria);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.u-table__vazio {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+}
+
+/* Menu de ações (⋯) */
+.u-action-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--raio);
+  font-size: 18px;
+  color: var(--cor-texto-suave);
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+.u-action-trigger:hover { background: var(--cor-fundo-input); color: var(--cor-texto); }
+
+.u-action-menu {
+  position: fixed;
+  z-index: 500;
+  min-width: 160px;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-diag);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  animation: fadein 0.14s var(--ease-out);
+}
+
+.u-action-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--cor-texto);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.1s;
+}
+.u-action-item:hover:not(:disabled) { background: var(--cor-fundo-input); }
+.u-action-item--danger { color: var(--cor-erro); }
+.u-action-item--danger:hover:not(:disabled) { background: color-mix(in srgb, var(--cor-erro) 10%, transparent); }
+.u-action-item:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Modal ── */
+.u-modal-overlay {
+  position: fixed; inset: 0;
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  animation: fadein 0.15s var(--ease-out);
+}
+
+.u-modal {
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: calc(var(--raio) * 1.5) 0;
+  box-shadow: var(--sombra-forte);
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  display: flex; flex-direction: column;
+  animation: modal-in 0.2s var(--ease-out);
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.u-modal--lg { max-width: 900px; }
+.u-modal--sm { max-width: 420px; }
+
+.u-modal__header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--cor-borda);
+  flex-shrink: 0;
+}
+.u-modal__titulo { font-size: 17px; font-weight: 700; color: var(--cor-texto); }
+.u-modal__desc { font-size: 13px; color: var(--cor-texto-suave); margin-top: 2px; }
+
+.u-modal__fechar {
+  background: none; border: none; cursor: pointer;
+  color: var(--cor-texto-suave); font-size: 20px; line-height: 1;
+  padding: 2px 6px; border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+.u-modal__fechar:hover { color: var(--cor-texto); background: var(--cor-fundo-input); }
+
+.u-modal__body { flex: 1; overflow-y: auto; padding: 20px 24px; }
+
+.u-modal__footer {
+  display: flex; justify-content: flex-end; gap: 8px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--cor-borda);
+  flex-shrink: 0;
+}
+
+/* ── Button variants extras ── */
+.btn--danger  { background: var(--cor-erro); color: #fff; }
+.btn--danger:hover:not(:disabled) { opacity: 0.88; }
+.btn--success { background: var(--cor-sucesso); color: var(--cor-sobre-primaria); }
+.btn--success:hover:not(:disabled) { opacity: 0.88; }
+
+/* ── Sub-menu de cadastro (segmented) — só aparece no mobile (ver responsive) ── */
+.subnav-cadastro { display: none; }
+.subnav-cadastro__item {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: calc(var(--raio) - 4px);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.subnav-cadastro__item:hover { color: var(--cor-texto); text-decoration: none; }
+.subnav-cadastro__item--ativo {
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Neutraliza o sublinhado global de a:hover no bottom-nav */
+.bottom-nav__item:hover { text-decoration: none; }
+
+/* ── Setas do carrossel de cartões (só ícone, sem fundo) ── */
+.seta-carrossel {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--cor-texto-suave);
+  transition: color 0.15s, opacity 0.15s;
+}
+.seta-carrossel:hover:not(:disabled) { color: var(--cor-texto); }
+.seta-carrossel:disabled { opacity: 0.25; cursor: default; }
+
+/* Esconde a barra de rolagem do carrossel (a rolagem continua funcionando
+   por toque/arraste); sem ela some a barrinha cinza embaixo do cartão. */
+.carrossel-cartoes { scrollbar-width: none; -ms-overflow-style: none; }
+.carrossel-cartoes::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+/* ── Extrato da fatura (lista agrupada por dia, estilo app de banco) ── */
+.extrato-lista { display: flex; flex-direction: column; }
+
+.extrato-grupo__data {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  padding: 20px 0 6px;
+}
+.extrato-grupo:first-child .extrato-grupo__data { padding-top: 2px; }
+
+.extrato-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--cor-texto);
+}
+/* Divisória fina só entre itens do mesmo dia */
+.extrato-item + .extrato-item { border-top: 1px solid var(--cor-borda); }
+
+.extrato-item__info { min-width: 0; }
+.extrato-item__desc {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--cor-texto);
+}
+.extrato-item__sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+}
+
+.extrato-item__dir {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+.extrato-item__valor { font-size: 15px; font-weight: 700; white-space: nowrap; }
+
+/* ── Toggle de tipo (entrada/saída) ── */
+.tipo-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.tipo-toggle__op {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: var(--raio);
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-fundo-input);
+  color: var(--cor-texto-suave);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.tipo-toggle__op--entrada:hover { border-color: var(--cor-sucesso); color: var(--cor-sucesso); }
+.tipo-toggle__op--saida:hover   { border-color: var(--cor-erro); color: var(--cor-erro); }
+.tipo-toggle__op--entrada.tipo-toggle__op--ativo {
+  background: var(--cor-sucesso); border-color: var(--cor-sucesso); color: #fff;
+}
+.tipo-toggle__op--saida.tipo-toggle__op--ativo {
+  background: var(--cor-erro); border-color: var(--cor-erro); color: #fff;
+}
+
+/* ── Seletor de tema ── */
+.tema-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--cor-fundo-input);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+.tema-toggle__opcao {
+  padding: 6px 14px;
+  border: none;
+  border-radius: calc(var(--raio) - 4px);
+  background: transparent;
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.tema-toggle__opcao:hover { color: var(--cor-texto); }
+.tema-toggle__opcao--ativo {
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Feedback de pressão nos controles que se comportam como botão mas não são
+   .btn (setas do carrossel, toggles, itens de menu). Só transform/opacity, na
+   GPU. Fica por último pra somar transform às transições próprias de cada um. ── */
+.seta-carrossel,
+.tipo-toggle__op,
+.tema-toggle__opcao,
+.subnav-cadastro__item,
+.user-menu__item,
+.u-action-item,
+.avatar--botao {
+  transition: transform 0.12s var(--ease-out), background 0.15s var(--ease-out),
+    color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), opacity 0.15s var(--ease-out);
+}
+.seta-carrossel:active:not(:disabled),
+.tipo-toggle__op:active,
+.tema-toggle__opcao:active,
+.subnav-cadastro__item:active,
+.user-menu__item:active,
+.u-action-item:active:not(:disabled),
+.avatar--botao:active { transform: scale(0.96); }

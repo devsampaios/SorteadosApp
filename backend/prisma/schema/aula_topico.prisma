@@ -1,0 +1,12 @@
+// Tópico da aula: compartilhado por disciplina + data (todos veem/editam).
+// A presença de cada usuário fica no model Presenca.
+model AulaTopico {
+  disciplinaId BigInt   @map("disciplina_id")
+  data         DateTime @db.Date
+  topico       String
+
+  disciplina Disciplina @relation(fields: [disciplinaId], references: [id], onDelete: Cascade)
+
+  @@id([disciplinaId, data])
+  @@map("aula_topico")
+}

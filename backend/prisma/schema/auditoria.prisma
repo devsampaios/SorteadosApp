@@ -1,0 +1,17 @@
+model Auditoria {
+  id        BigInt  @id @default(autoincrement())
+  rota      String?
+  acao      String
+  situacao  String  @default("Success")
+  descricao String  @db.Text
+  ip        String?
+
+  usuarioId BigInt?  @map("usuario_id")
+  usuario   Usuario? @relation(fields: [usuarioId], references: [id])
+
+  criadoEm DateTime @default(now()) @map("criadoem")
+
+  @@index([usuarioId])
+  @@index([situacao])
+  @@map("auditoria")
+}

@@ -1,0 +1,12 @@
+/* FormGroup — bloco vertical: rótulo em cima, campo embaixo, com respiro. */
+.ci-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.ci-form-group:last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,14 @@
+/* BoldLabel — rótulo em negrito para os campos do formulário. */
+.ci-bold-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1.2;
+}
+
+/* Marcador de obrigatório. */
+.ci-bold-label--obrigatorio::after {
+  content: " *";
+  color: var(--cor-erro);
+  font-weight: 700;
+}

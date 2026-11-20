@@ -1,0 +1,86 @@
+/* ── Desktop login split layout ── */
+@media (min-width: 900px) {
+  .login-branding { display: flex; width: 45%; max-width: 520px; }
+  .login-mobile-logo { display: none; }
+}
+
+/* ── Tablet ── */
+@media (max-width: 1024px) {
+  :root { --largura-sidebar: 180px; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header"
+      "main"
+      "bottomnav";
+  }
+
+  .sidebar { display: none; }
+  .bottom-nav { display: block; }
+
+  .main-content {
+    padding: 16px;
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .header { display: flex; padding: 0 16px; }
+
+  .login-card { padding: 24px 20px; }
+  .login-mobile-logo { display: flex; }
+
+  .cards-grid { grid-template-columns: 1fr; }
+
+  /* iOS só dá zoom no foco quando a fonte do campo é < 16px. Subindo pra 16px
+     no mobile, o "foco estranho" com zoom deixa de acontecer. */
+  .input, textarea, select { font-size: 16px; }
+
+  /* Avaliações: no mobile troca a tabela (com scroll horizontal) por cards. */
+  .aval-desktop { display: none; }
+  .aval-mobile { display: block; }
+
+  /* Sub-menu de cadastro — só no mobile (no desktop a sidebar já lista tudo) */
+  .subnav-cadastro {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding: 4px;
+    background: var(--cor-fundo-input);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    overflow-x: auto;
+  }
+}
+
+/* ── Mobile pequeno ── */
+@media (max-width: 380px) {
+  .login-card__titulo { font-size: 18px; }
+  .btn { font-size: 13px; }
+}
+
+/* ── Utils ── */
+@media (max-width: 600px) {
+  .u-modal { border-radius: var(--raio-diag); }
+  .u-modal__header { padding: 16px 16px 12px; }
+  .u-modal__body  { padding: 14px 16px; }
+  .u-modal__footer { padding: 12px 16px; }
+  .u-searchbar__row { flex-direction: column; }
+
+  /* Cabeçalho de seção empilha no mobile: título em cima, filtros/ações em
+     baixo ocupando a largura toda, em vez de espremidos ao lado do título. */
+  .secao-header { flex-direction: column; align-items: stretch; }
+  .secao-header__acoes { width: 100%; }
+
+  /* Filtros de lançamentos: cada controle ocupa a linha inteira; o par de datas
+     divide uma linha só (com o "até" no meio). Anula as larguras fixas do desktop. */
+  .filtros-lancamento { width: 100%; }
+  .filtros-lancamento > .u-field,
+  .filtros-lancamento > .filtros-lancamento__datas { flex: 1 1 100% !important; width: 100% !important; }
+  .filtros-lancamento .u-field { width: auto !important; }
+  .filtros-lancamento__datas { display: flex; gap: 8px; align-items: center; }
+  .filtros-lancamento__datas .u-field { flex: 1 1 0; min-width: 0; }
+}

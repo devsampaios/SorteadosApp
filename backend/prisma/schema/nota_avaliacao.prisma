@@ -1,0 +1,11 @@
+model NotaAvaliacao {
+  avaliacaoId     BigInt  @map("avaliacao_id")
+  usuarioId       BigInt  @map("usuario_id")
+  pontuacaoObtida Decimal @map("pontuacaoobtida") @db.Decimal(10, 2)
+
+  avaliacao Avaliacao @relation(fields: [avaliacaoId], references: [id], onDelete: Cascade)
+
+  @@id([avaliacaoId, usuarioId])
+  @@index([usuarioId])
+  @@map("notaavaliacao")
+}

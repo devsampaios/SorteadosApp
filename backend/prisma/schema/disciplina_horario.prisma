@@ -1,0 +1,12 @@
+model DisciplinaHorario {
+  id           BigInt @id @default(autoincrement())
+  disciplinaId BigInt @map("disciplina_id")
+  diaSemana    Int    @map("diasemana")
+  horaInicio   String @map("horainicio")
+  horaFim      String @map("horafim")
+
+  disciplina Disciplina @relation(fields: [disciplinaId], references: [id], onDelete: Cascade)
+
+  @@index([disciplinaId])
+  @@map("horariodadisciplina")
+}

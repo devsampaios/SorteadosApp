@@ -1,0 +1,12 @@
+/* Grid — wrappers finos sobre o grid do Bootstrap (bootstrap-grid.min.css já é
+   importado no main.tsx). Row/Col apenas montam as classes col-{bp}-{n};
+   aqui ficam só os ajustes de espaçamento vertical entre linhas do formulário. */
+.ci-row {
+  --bs-gutter-x: 16px;
+  --bs-gutter-y: 0;
+}
+
+/* Espaço entre linhas empilhadas de um mesmo formulário. */
+.ci-row + .ci-row {
+  margin-top: 4px;
+}

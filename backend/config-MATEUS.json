@@ -1,0 +1,32 @@
+{
+  "app": {
+    "port": 3000,
+    "env": "development"
+  },
+  "cors": {
+    "origins": [
+      "*"
+    ]
+  },
+  "uploads": {
+    "dir": "./uploads"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "mateussapaio2710",
+    "password": "dFRKmt5/ib97Z3m5+wc9dPPCMKq5fw7R9Ip2iIWnEk32Gg==",
+    "database": "learning"
+  },
+  "jwt": {
+    "secret": "dev-secret-troque-em-producao-por-algo-longo-e-aleatorio"
+  },
+  "crypto": {
+    "secret": "dev-crypto-secret-troque-em-producao-por-algo-longo-e-aleatorio"
+  },
+  "firebase": {
+    "projectId": "learning-889ff",
+    "clientEmail": "firebase-adminsdk-fbsvc@learning-889ff.iam.gserviceaccount.com",
+    "privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDJi1H/XA7EvYJ0\nDdgSNLQECyagxTQUdg22iFJuuXQRUeM7jg6AeAi3pqmQrL7n/3NDKK7JLcnj3Qcj\nFGvC/RM4FfOjJtlIevsiTXDjjTffHjh0wnYzNToW/91y9wo4tuk95cxJzbqMcnEr\nCoHQN/iiyW3OBXndH5m5W+DtWkJZJAmbV32Z5bdtr6+Ck/lJuwwSsIgXpcV/q/iD\ndcqzzV7uL/V6/CedOpnvgivMvmO4GIWfSNihO07qkgn6g/Y822DwIYkezijPV91a\nXl9xQ5XB0h3HN5TLf55S8soATulfS8nm3O4umBKu8zh0uMzCCL3dRWs4uef2YbeI\nuBeREj35AgMBAAECggEAYom1W2584f/tyiQColQWN2vkRPJl1iMp7TaVZwFRGC67\nNKDtwi3txSy89rke1Xr1tb4sRrwWW0vzc1lGnpzxSpig+AHEdkV6h3jpWrfuuy2h\nWKTC+aJqdlg+wzi5TKVRQCwcR3FIZeaGIg8PDOhwrdZh0zqmLFCI7jFXtXRNwBqZ\nrF+ZPLYSYk0cxjKswQ2nYo5HEM4tTYhdECj+OHx9gkCCL1HDS9/m4fEnB10h5aqf\nsDW+mK53fIN3Hxu3vOmQUfkvhGDkrjG+cvYR4pE4Kbse10QXL8R0fI5lbhd24DxJ\ncQ7FJFarKxW818i5XXDEHt4dLXkfvXd7Dh3tyzTYaQKBgQD2FXPyN0jbZgGlp0Bj\nMW6gUI3S4UlHM6kIA2Kjz1D62Ma6Pef5T+qpPme37stZrVb+YDqgSuCCKegZXguw\nfOwCX8v0PmjCn+xaRqCi0xfNm0m3a92ns3vOtPC/LIUDMXmNsnila9xjKV1iomHy\nwAdBKNkdhyXS8PuXNOSFC8gpWwKBgQDRqmggJcEPKO+r+DBkk/0pVPQdtN+RhaJv\n9fe2gA1SHgYLzFjiwYzUibsQ552Klj+sAeRxx01L03KTUjFNhsicQzUdwaIYU6Qa\nxsAD2OauxKrAC0XebRsngoBCv//eWgaiC1Lt7VGa1LjguSC4sLQWlfL9h7oaPdO8\n/TI/sToCOwKBgQD1DCXahDzz5V8sgyE15aqgz7Z60UZ0NbhTt3NJZg/gy28RVMYk\nWPV3NSJ5Ybxzf45KXq7ioc1xMKPkZudDBxLJxnVFscQGUtQ8jWo22fgxETrWAP7H\nmY5nJ305Ee8eX+0IMjm7mG3s/Or2ZncdESXoN/IEWmlK5hfS2aPZ7QKUUwKBgAHk\nBoJbtMz9MoQbfdw6VWsdAAKQkf+O8/MMhcpYh0Y5TRaoJhkNY8a64zv4yrvoNPTJ\nI5U/FdxcMMlRUW6Ai6iVFpKJH3wWrQEsz6h5OUNUNLH8qAmkdD07+QohDx6jMzIc\n5geNP1IlHvGv2bKwrT8S5RkSM0RvUEyBAAYBBCPnAoGBAMMPj7MoHCrnJ4jpzgYP\n+v9SZ6TEPSuLNLlVnWB0zv0FRp0wCLRMsOnlx6nzW2+DO5zdAjmPOl4AQ0FlAEhu\n2m5XZAWFGuxeon58WWLGLI83yAZSzSUWKjqYgJkxnYhRLTzU4f/gsHIOU7Y++l+u\nUfXhfSblgRgE9iyqvKuA5utC\n-----END PRIVATE KEY-----\n"
+  }
+}

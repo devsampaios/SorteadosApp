@@ -1,0 +1,33 @@
+{
+  "app": {
+    "port": 3005,
+    "env": "production"
+  },
+  "cors": {
+    "origins": [
+      "*"
+    ]
+  },
+  "uploads": {
+    "dir": "/Users/mateussapaio2710/Downloads"
+  },
+  "database": {
+    "host": "18.231.6.210",
+    "port": 5432,
+    "user": "userlearning",
+    "password": "dNzlOdkjJ37o6G3ayFExcPmm+omlHuaY0owSOlx9jgh904Y9h26Etdqs",
+    "database": "learning"
+  },
+  "jwt": {
+    "secret": "(ML!I(NdI.dY$P5p0E3Zn=hOlk$FBO(M;Y{r.Rze8V3"
+  },
+  "crypto": {
+    "secret": "J*r|fu/<IJre5ny6d.d2M[jEXH0<kZQ+F7*=$#(sfEK"
+  },
+  "jobs": true,
+  "firebase": {
+    "projectId": "learning-eb099",
+    "clientEmail": "firebase-adminsdk-fbsvc@learning-eb099.iam.gserviceaccount.com",
+    "privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDnaLqFCHC/35og\nzkVUK+SsdOT17oy4ktG5Uaac/01N3BmV5Foilzvalf5uwBC1pBfs/Q+15FpBQPPw\n9hZAeKjhty3FnHjFIddPBdZCBlcrf2TEhUbm5xIylsxb+imdwXlDYsZ8/8TFXh2U\nEGn+Iv6iG+0Kb0agKwAZooU4vlLGpiqvHr4lSENZNbi3ep7GKctSEd//G5ktEB6k\nH/m8DWBQa55IfDxD9XAr8udTTwVtK+g0FOvWDb8qoFcZPy/86dN3jbTvB9qtUY1G\nNvAzWVJOXVFS8p4YwV092NACdPb1ndNG2dB1jFJIpnl/6qtZXBPfpZ6fKEYCKiQs\ngLj9WzDjAgMBAAECggEAVOH6FQVJEmCrUSBIlvz4xvej6sAjlyqnylH0iz8stIQp\nUG2wUGLoHiCJ8Ub7eh1kd1ZGNoK6RphUQs2J0QFRdWYzYHqqZCkrKL3r31EjFX4H\n0PxQSy90YeEluhFTxZ2r5Pds9nn9TCZfNConLwTYIU+cDglOPz82rLCMLInHpDyp\n4/pPORnMAWmFu6dybUSlC2INdbIn9468x58DhmoNeoHZemkDkKD5GKXXNpoFoxn2\n8FRoLXxk2V8QyIcFvl8JQfIKNJhpmF2KYJzTD0Z6UR99OnLSyMSuLlh49kpW4s8j\nxLewnL/FAipvTRWuGSF4slcuMDwI1Sahv5GZWffSdQKBgQD65Qy3gAIuMcl1Is/B\nUfr+aOC5HXPa351wmXz7dSVZoZxQe1w/i3JZv4NpSsusem6UUlWdd/OZbsacmFKB\na0dD/NqTqjHOXRnI7duwIG48tklSbf9fFwVl/Big7RA9PSI4fnDh9HOtqTmSv/2h\n7S7uPRZ7N5SoDry3o1fYxdIHhwKBgQDsHizZWFl33+cqBrfCoxNWmp8h7qrRuWrc\nGxz00ORKFgB0hit4+TBv7aXEYy1mqbj/lIFhnJnmzMR/cUcXGL40SnjQS/WKeINC\n72bVsBwfZp1rSYqZkOrpwj822A/Vf1FmuIF+5uXhlZ4+mCFapUQB2b6JjVNRGBUI\nJ6RM29bqxQKBgG8uZW5DybOS2IWSAaLXo3RuIXem95o8kdY+DkaYaQ7JMS3xHLYE\nI45l8eQNAyjRsIMF4W7AozCRCG6IibdUROZ5/JqHRz79vtltnnb0SCWbWe6vVAVd\nfETvbDKUGygoGSwTzA41d7WzUhIYBltlcfCdHYNI5BV9Ql/WgK1NLH+tAoGAKGqZ\n3rJCzkQjO4xe1BA59S8OYi6KSs/kPLzfXgCLsyrE9S0qL9Dnu6EAKPeZA+O1aPow\nk1bM+Ta/w9jOBGQV2rmMqIr4ArXSMhjsj1NP3QghlgXGlba6nzzCuU6Ol0rt0hlv\nARvg6ZZEug4sV2nGlFKDTORGCLGImBbBBu7ygMkCgYEA7GQ9v3Ynen7pIFbKGFPf\nHneXGhGfCqtmOx3HjgWFHiDaCNjPnvfGBMQ8N3oNwujajwNR7fXbMm3p22MA4Lhj\nd9EqNyiU+2KV4fdjG8yJfMKGQp3TDWrLVRmT/Epw34ad5iHgMlexAR8aPVDSnPHF\nI2ROUEk6cCzFwJS2O0bLsvw=\n-----END PRIVATE KEY-----\n"
+  }
+}

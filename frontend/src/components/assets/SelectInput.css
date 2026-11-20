@@ -1,0 +1,29 @@
+/* SelectInput — segue o visual do TextInput, com seta customizada. */
+.ci-select {
+  width: 100%;
+  height: 40px;
+  padding: 8px 36px 8px 12px;
+  font-size: 14px;
+  font-family: var(--fonte-corpo);
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo-input);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2397723a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+}
+
+.ci-select:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-primaria) 14%, transparent);
+}
+
+.ci-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

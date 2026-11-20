@@ -1,0 +1,11 @@
+// Schema dividido em vários arquivos (um por tabela). Habilitado pelo preview
+// prismaSchemaFolder: o Prisma lê todos os .prisma desta pasta.
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}

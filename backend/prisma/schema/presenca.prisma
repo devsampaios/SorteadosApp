@@ -1,0 +1,12 @@
+model Presenca {
+  disciplinaId BigInt   @map("disciplina_id")
+  usuarioId    BigInt   @map("usuario_id")
+  data         DateTime @db.Date
+  status       Int      @default(1)
+
+  disciplina Disciplina @relation(fields: [disciplinaId], references: [id], onDelete: Cascade)
+
+  @@id([disciplinaId, usuarioId, data])
+  @@index([usuarioId])
+  @@map("presenca")
+}

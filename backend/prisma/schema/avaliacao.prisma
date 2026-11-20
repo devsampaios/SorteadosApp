@@ -1,0 +1,14 @@
+model Avaliacao {
+  id              BigInt    @id @default(autoincrement())
+  disciplinaId    BigInt    @map("disciplina_id")
+  nome            String
+  tipo            Int       @default(1)
+  data            DateTime? @db.Date
+  pontuacaoMaxima Decimal   @map("pontuacaomaxima") @db.Decimal(10, 2)
+
+  disciplina Disciplina      @relation(fields: [disciplinaId], references: [id], onDelete: Cascade)
+  notas      NotaAvaliacao[]
+
+  @@index([disciplinaId])
+  @@map("avaliacao")
+}

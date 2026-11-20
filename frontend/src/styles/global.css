@@ -1,0 +1,81 @@
+/* Reset + base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Curvas de easing fortes — as nativas do CSS (ease/ease-out) são fracas e sem
+   "punch". Baseado no design-engineering do Emil Kowalski. Usadas em toda
+   transição/animação de UI do app. */
+:root {
+  color-scheme: light;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --fonte-titulo: 'Newsreader', Georgia, serif;
+  --fonte-corpo: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --cor-fundo: #fffef3;
+  --cor-fundo-card: #ffffff;
+  --cor-fundo-input: #fffdf2;
+  --cor-borda: #fbe3ad;
+  --cor-primaria: #f8a833;
+  --cor-primaria-hover: #f0990f;
+  --cor-sobre-primaria: #3b2a12;
+  --cor-secundaria: #fabe5f;
+  --cor-laranja: #f8a833;
+  --cor-creme: #ffffe3;
+  --cor-branco: #ffffff;
+  --cor-texto: #3b2a12;
+  --cor-texto-suave: #97723a;
+  --cor-erro: #d64545;
+  --cor-sucesso: #2f9e5c;
+  --cor-sidebar: #ffffff;
+  --cor-header: #ffffff;
+  --cor-chrome: rgba(255, 255, 255, 0.82);
+
+  --largura-sidebar: 220px;
+  --raio: 12px;
+  /* Arredondamento diagonal: apenas canto superior-esquerdo e inferior-direito. */
+  --raio-diag: var(--raio) 0;
+  --sombra: 0 1px 2px rgba(120, 80, 10, 0.06), 0 8px 28px rgba(120, 80, 10, 0.10);
+  --sombra-forte: 0 2px 8px rgba(120, 80, 10, 0.10), 0 22px 60px rgba(120, 80, 10, 0.18);
+}
+
+/* Respeita quem pediu menos movimento no sistema. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Quem pediu menos transparência: chrome vira sólido, sem blur (Apple §14). */
+@media (prefers-reduced-transparency: reduce) {
+  .header, .bottom-nav {
+    background: var(--cor-header);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--fonte-corpo);
+  font-size: 14px;
+  line-height: 1.5;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--cor-primaria); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+fieldset { border: none; min-width: 0; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--cor-borda); border-radius: 3px; }

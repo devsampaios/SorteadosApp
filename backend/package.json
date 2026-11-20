@@ -1,0 +1,37 @@
+{
+  "name": "learning-backend",
+  "version": "1.0.0",
+  "description": "Backend Express + Prisma + Firebase Auth",
+  "main": "dist/AppInit.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/AppInit.ts",
+    "build": "tsc",
+    "start": "node dist/AppInit.js",
+    "publish-prod": "node scripts/publish-prod.mjs",
+    "setup-tabelas": "node scripts/setup-tabelas.mjs",
+    "cifrar-senha": "ts-node scripts/cifrar-senha-banco.ts"
+  },
+  "prisma": {
+    "schema": "prisma/schema"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@types/cors": "^2.8.19",
+    "cors": "^2.8.6",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.1",
+    "firebase-admin": "^12.7.0",
+    "jsonwebtoken": "^9.0.3",
+    "prisma": "^5.22.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.10.0",
+    "prettier": "^3.8.4",
+    "ssh2-sftp-client": "^11.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2"
+  }
+}

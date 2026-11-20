@@ -1,0 +1,8 @@
+node_modules/
+dist/
+config.json
+.env
+*.log
+
+# uploads locais de dev (produção usa pasta fora do deploy)
+uploads/
