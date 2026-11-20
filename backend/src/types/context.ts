@@ -3,7 +3,6 @@ import { Request } from "express";
 
 export interface Contexto {
   usuarioId: string;
-  perfil: number;
   ip: string;
   userAgent: string;
 }

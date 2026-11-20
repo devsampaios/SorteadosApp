@@ -1,16 +1,11 @@
-export interface IdTokenInput {
-  idToken: string;
-}
-
-export interface RegistroInput {
-  idToken: string;
-  nome?: string;
+export interface LoginInput {
+  login: string;
+  senha: string;
 }
 
 export interface SessaoResponse {
   token: string;
   usuarioId: string;
-  email: string;
+  login: string;
   nome: string | null;
-  perfil: string;
 }

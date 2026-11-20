@@ -1,7 +1,5 @@
 import { useEffect } from "react";
-import { signOut } from "firebase/auth";
 import api from "../service/Api";
-import { firebaseAuth } from "../firebase";
 import { useAuth } from "../context/authContext";
 import { useToast } from "../toast/ToastContext";
 import { registrarMensagens, limparMensagens } from "./Messages";
@@ -12,10 +10,7 @@ export default function AppErrorBridge() {
 
   useEffect(() => {
     api.tratarErro = (mensagem) => showError(mensagem);
-    api.tratarErroAuth = () => {
-      signOut(firebaseAuth).catch(() => {});
-      logout();
-    };
+    api.tratarErroAuth = () => logout();
     registrarMensagens({ showError, showSuccess, showInfo, showConfirm });
     return () => {
       api.tratarErro = undefined;

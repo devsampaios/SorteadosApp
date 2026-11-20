@@ -16,12 +16,7 @@
     "port": 5432,
     "user": "postgres",
     "password": "postgres",
-    "database": "learning"
-  },
-  "firebase": {
-    "projectId": "",
-    "clientEmail": "",
-    "privateKey": ""
+    "database": "sorteados"
   },
   "jobs": {
     "ativo": true

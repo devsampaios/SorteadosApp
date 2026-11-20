@@ -1,75 +1,46 @@
-import type { Usuario, Disciplina } from "@prisma/client";
+import type { Usuario } from "@prisma/client";
 import type { EnumMap, EnumItem } from "../Helper/Enum";
 import type { IEntityRepository } from "../Repository/Contracts";
 import { SearchableEntityModel } from "./BaseModel";
-// Tipos de disciplina reaproveitados da entidade Disciplina.
-import type { CriarDisciplinaUsuario, DisciplinaResumo } from "./DisciplinaModel";
 
-export const PerfilUsuario: EnumMap = { 1: "MASTER", 2: "USUARIO" };
 export const SituacaoUsuario: EnumMap = { 1: "ATIVO", 2: "BLOQUEADO", 3: "EXCLUIDO" };
 
-export type { CriarDisciplinaUsuario, DisciplinaResumo };
-
 // ----- Request DTOs (entrada já validada pelo schema) -----
+// A senha só entra na criação (texto puro, o controller grava o hash). Depois
+// ela é trocada pelo script criptografar-senha + update direto no banco.
 export interface CriarUsuario {
-  firebaseUid: string;
-  email: string;
+  login: string;
+  senha: string;
   nome?: string;
-  dataNascimento?: Date;
-  perfil?: number;
   situacao?: number;
-  disciplinas?: CriarDisciplinaUsuario[];
 }
 
 export interface AtualizarUsuario {
-  email?: string;
+  login?: string;
   nome?: string;
-  dataNascimento?: Date;
-  perfil?: number;
   situacao?: number;
-  fotoDePerfilId?: bigint | null;
-  disciplinas?: CriarDisciplinaUsuario[];
 }
 
-// ----- Dados de persistência (saída do Convert → `data` do Prisma, sem disciplinas) -----
+// ----- Dados de persistência (saída do Convert → `data` do Prisma) -----
 export interface CriarUsuarioData {
-  firebaseUid: string;
-  email: string;
+  login: string;
+  senha: string;
   nome?: string;
-  dataNascimento?: Date;
-  perfil?: number;
   situacao?: number;
 }
 
-export interface AtualizarUsuarioData {
-  email?: string;
-  nome?: string;
-  dataNascimento?: Date;
-  perfil?: number;
-  situacao?: number;
-  fotoDePerfilId?: bigint | null;
-}
+export type AtualizarUsuarioData = AtualizarUsuario;
 
-// ----- Response -----
+// ----- Response (nunca expõe a senha) -----
 export interface UsuarioResponse {
   id: string;
-  email: string;
+  login: string;
   nome: string | null;
-  dataNascimento: string | null;
-  perfil: EnumItem | null;
   situacao: EnumItem | null;
-  disciplinas: DisciplinaResumo[];
 }
 
-// Entidade + agregado de disciplinas (opcional: List traz sem, PorId traz com).
-export type UsuarioComDisciplinas = Usuario & { disciplinas?: Disciplina[] };
-
-export interface IUsuarioRepository
-  extends IEntityRepository<UsuarioComDisciplinas, CriarUsuarioData, AtualizarUsuarioData> {
-  PorEmail(email: string): Promise<Usuario | null>;
-  PorFirebaseUid(firebaseUid: string): Promise<Usuario | null>;
-  PorIdComDisciplinas(id: bigint): Promise<UsuarioComDisciplinas | null>;
-  SincronizarDisciplinas(usuarioId: bigint, disciplinas: CriarDisciplinaUsuario[]): Promise<void>;
+export interface IUsuarioRepository extends IEntityRepository<Usuario, CriarUsuarioData, AtualizarUsuarioData> {
+  PorLogin(login: string): Promise<Usuario | null>;
 }
 
 /**
@@ -79,13 +50,13 @@ export interface IUsuarioRepository
  */
 export class UsuarioModel extends SearchableEntityModel {
   id: bigint;
-  private readonly email: string;
+  private readonly login: string;
   private readonly nome?: string | null;
 
-  constructor(dados: { id?: bigint; email: string; nome?: string | null }) {
+  constructor(dados: { id?: bigint; login: string; nome?: string | null }) {
     super();
     this.id = dados.id ?? 0n;
-    this.email = dados.email;
+    this.login = dados.login;
     this.nome = dados.nome;
   }
 
@@ -98,6 +69,6 @@ export class UsuarioModel extends SearchableEntityModel {
   }
 
   protected searchableFields(): Array<string | null | undefined> {
-    return [this.email, this.nome];
+    return [this.login, this.nome];
   }
 }

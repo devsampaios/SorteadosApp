@@ -78,7 +78,6 @@ export interface FaturaDetalhe {
   items: Lancamento[];
 }
 
-export type TipoPerfil = "MASTER" | "USUARIO";
 
 export interface Origem {
   id: string;
@@ -171,12 +170,7 @@ export interface ResumoEvolucaoLinha {
 }
 
 export interface PerfilUsuario {
-  usuarioId: string;
-  email: string;
+  id: string;
+  login: string;
   nome: string | null;
-  dataNascimento: string | null;
-  /** "CLARO" | "ESCURO" | "SISTEMA" | null */
-  tema: string | null;
-  fotoArquivoId: string | null;
-  fotoUrl: string | null;
 }

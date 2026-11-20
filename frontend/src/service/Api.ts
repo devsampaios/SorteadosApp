@@ -275,9 +275,11 @@ class Api {
 
     console.error(`[API] ${message}`, { status, details, stack });
 
-    // Erro de autenticação/autorização: desloga sempre (Firebase + front) e
+    // Erro de autenticação/autorização com sessão aberta: desloga sempre e
     // avisa, independentemente de showErrors — sessão inválida é sempre crítica.
-    if (status === 401 || status === 403) {
+    // Sem sessão (ex: login com senha errada) segue como erro comum.
+    const temSessao = Boolean(this.getOptions().Authorization);
+    if (temSessao && (status === 401 || status === 403)) {
       this.tratarErroAuth?.();
       this.tratarErro?.("Sua sessão expirou ou você não tem acesso. Entre novamente.");
     } else if (showErrors) {

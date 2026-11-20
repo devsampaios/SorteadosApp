@@ -22,41 +22,6 @@ export const SITUACOES_USUARIO: ItemEnum[] = [
 	{ id: 3, descricao: 'EXCLUIDO' },
 ];
 
-export const PERFIS: ItemEnum[] = [
-	{ id: 1, descricao: 'MASTER' },
-	{ id: 2, descricao: 'USUARIO' },
-];
-
-export const PAPEIS_DISCIPLINA: ItemEnum[] = [
-	{ id: 1, descricao: 'DONO' },
-	{ id: 2, descricao: 'MEMBRO' },
-];
-
-export const SITUACOES_MEMBRO: ItemEnum[] = [
-	{ id: 1, descricao: 'APROVADO' },
-	{ id: 2, descricao: 'PENDENTE' },
-];
-
-// Carga horária da disciplina (em horas). Cada aula = 2h, então o total de
-// aulas é carga / 2 (ex.: 30h → 15 aulas).
-export const CARGAS_HORARIAS: ItemEnum[] = [
-	{ id: 30, descricao: '30h' },
-	{ id: 45, descricao: '45h' },
-	{ id: 60, descricao: '60h' },
-	{ id: 75, descricao: '75h' },
-	{ id: 90, descricao: '90h' },
-	{ id: 120, descricao: '120h' },
-	{ id: 150, descricao: '150h' },
-	{ id: 180, descricao: '180h' },
-];
-
-export function aulasDaCarga(cargaHoraria: number | null | undefined): number {
-	return cargaHoraria ? Math.round(cargaHoraria / 2) : 0;
-}
-
-export const PAPEL_DISCIPLINA_DONO = 1;
-export const SITUACAO_MEMBRO_PENDENTE = 2;
-
 export function enumId(valor: unknown): number | undefined {
 	if (valor == null || valor === '') {
 		return undefined;

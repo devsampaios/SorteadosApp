@@ -5,7 +5,7 @@ import { decifrar } from "../Helper/CampoCifrado";
 type AuditoriaBuild = Auditoria & {
   rota: string | null;
   ip: string | null;
-  usuario?: { nome: string | null; email: string } | null;
+  usuario?: { nome: string | null; login: string } | null;
 };
 
 export function Build(auditoria: AuditoriaBuild): AuditoriaResponse {
@@ -17,7 +17,7 @@ export function Build(auditoria: AuditoriaBuild): AuditoriaResponse {
     descricao: auditoria.descricao,
     ip: auditoria.ip ?? null,
     usuarioId: auditoria.usuarioId ? auditoria.usuarioId.toString() : null,
-    usuarioNome: decifrar(auditoria.usuario?.nome) ?? auditoria.usuario?.email ?? null,
+    usuarioNome: decifrar(auditoria.usuario?.nome) ?? auditoria.usuario?.login ?? null,
     criadoEm: auditoria.criadoEm.toISOString(),
   };
 }

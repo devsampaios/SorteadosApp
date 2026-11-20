@@ -1,7 +1,7 @@
 {
-  "name": "learning-backend",
+  "name": "sorteados-backend",
   "version": "1.0.0",
-  "description": "Backend Express + Prisma + Firebase Auth",
+  "description": "Backend Express + Prisma + JWT",
   "main": "dist/AppInit.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/AppInit.ts",
@@ -9,7 +9,8 @@
     "start": "node dist/AppInit.js",
     "publish-prod": "node scripts/publish-prod.mjs",
     "setup-tabelas": "node scripts/setup-tabelas.mjs",
-    "cifrar-senha": "ts-node scripts/cifrar-senha-banco.ts"
+    "cifrar-senha": "ts-node scripts/cifrar-senha-banco.ts",
+    "criptografar-senha": "node scripts/criptografar-senha.mjs"
   },
   "prisma": {
     "schema": "prisma/schema"
@@ -17,10 +18,10 @@
   "dependencies": {
     "@prisma/client": "^5.22.0",
     "@types/cors": "^2.8.19",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.1",
-    "firebase-admin": "^12.7.0",
     "jsonwebtoken": "^9.0.3",
     "prisma": "^5.22.0",
     "zod": "^3.25.76"

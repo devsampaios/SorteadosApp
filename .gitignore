@@ -9,3 +9,9 @@ frontend/.env.*.local
 
 *.log
 .DS_Store
+
+# Material de referência do sistema antigo (dados pessoais e arquivos grandes)
+*.gdb*
+*.xlsx
+*.docx
+Mateus*/

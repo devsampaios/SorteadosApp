@@ -14,11 +14,6 @@ interface AppConfig {
   cors: { origins: string[] };
   uploads: { dir: string };
   database: DbConfig;
-  firebase: {
-    projectId: string;
-    clientEmail: string;
-    privateKey: string;
-  };
   jwt: { secret: string };
   crypto: { secret: string };
   jobs: boolean;

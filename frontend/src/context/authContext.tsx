@@ -7,30 +7,22 @@ import {
   type ReactNode,
 } from "react";
 
-import type { TipoPerfil } from "../types/dominio";
-
 const STORAGE_KEY = "app:auth";
 
 export interface UsuarioAutenticado {
   usuarioId: string;
-  email: string;
+  login: string;
   nome: string | null;
   token: string;
-  /** MASTER usa o app normalmente E acessa a administração */
-  perfil: TipoPerfil;
-  /** Id do arquivo da foto de perfil; undefined = ainda não carregado */
-  fotoArquivoId?: string | null;
 }
 
 interface AuthContextValue {
   usuario: UsuarioAutenticado | null;
   autenticado: boolean;
-  /** Atalho pra liberar UI administrativa */
-  ehMaster: boolean;
   login: (dados: UsuarioAutenticado) => void;
   logout: () => void;
   atualizarToken: (token: string) => void;
-  atualizarUsuario: (patch: Partial<Pick<UsuarioAutenticado, "nome" | "email" | "fotoArquivoId">>) => void;
+  atualizarUsuario: (patch: Partial<Pick<UsuarioAutenticado, "nome">>) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -75,7 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const atualizarUsuario = useCallback((patch: Partial<Pick<UsuarioAutenticado, "nome" | "email" | "fotoArquivoId">>) => {
+  const atualizarUsuario = useCallback((patch: Partial<Pick<UsuarioAutenticado, "nome">>) => {
     setUsuario((prev) => {
       if (!prev) return prev;
       return { ...prev, ...patch };
@@ -87,9 +79,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       value={{
         usuario,
         autenticado: usuario !== null,
-        // Sessão antiga (gravada antes do perfil existir) cai em USUARIO — o
-        // backend é quem barra de verdade, isso aqui só esconde a UI.
-        ehMaster: usuario?.perfil === "MASTER",
         login,
         logout,
         atualizarToken,

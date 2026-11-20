@@ -47,7 +47,6 @@ export default function AuditoriaView() {
 				titulo='Auditoria'
 				url='/auditorias'
 				ordenacaoPadrao='id desc'
-				permissao={['MASTER']}
 				esconderNovo
 				esconderFiltro
 				esconderNavegacao

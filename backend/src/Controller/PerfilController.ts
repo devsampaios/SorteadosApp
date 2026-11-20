@@ -11,19 +11,15 @@ import { cifrar, decifrar } from "../Helper/CampoCifrado";
 
 interface PerfilResponse {
   id: string;
-  email: string;
+  login: string;
   nome: string | null;
-  dataNascimento: string | null;
-  fotoArquivoId: string | null;
 }
 
 function build(usuario: Usuario): PerfilResponse {
   return {
     id: usuario.id.toString(),
-    email: usuario.email,
+    login: usuario.login,
     nome: decifrar(usuario.nome),
-    dataNascimento: usuario.dataNascimento ? usuario.dataNascimento.toISOString().slice(0, 10) : null,
-    fotoArquivoId: usuario.fotoDePerfilId ? usuario.fotoDePerfilId.toString() : null,
   };
 }
 

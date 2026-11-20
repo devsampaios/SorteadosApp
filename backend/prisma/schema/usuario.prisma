@@ -1,23 +1,16 @@
 model Usuario {
-  id             BigInt    @id @default(autoincrement())
-  firebaseUid    String    @unique @map("firebaseuid")
-  email          String    @unique
-  nome           String?
-  dataNascimento DateTime? @map("datanascimento") @db.Date
+  id    BigInt @id @default(autoincrement())
+  login String @unique
+  // Hash bcrypt da senha (gerado com `npm run criptografar-senha`).
+  senha String
+  nome  String?
 
-  token         String?
-  tokenExpiraEm DateTime? @map("tokenexpiraem")
-
-  perfil   Int? @default(2)
   situacao Int? @default(1)
-
-  fotoDePerfilId BigInt? @map("fotodeperfil_id")
 
   auditorias Auditoria[]
 
   criadoEm DateTime @default(now()) @map("criadoem")
 
-  @@index([perfil])
   @@index([situacao])
   @@map("usuario")
 }

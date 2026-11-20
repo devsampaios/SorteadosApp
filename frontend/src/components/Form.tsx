@@ -14,9 +14,7 @@ import { isNumeric } from "../utils/helpers";
 import { useToast } from "../toast/ToastContext";
 import { Button, Card, corDot, Filler } from "./utils";
 import api from "../service/Api";
-import type { TipoPerfil } from "../types/dominio";
 
-const STORAGE_AUTH = "app:auth";
 
 /**
  * Helpers para o corpo do formulário atualizarem o formState sem repetir o
@@ -37,17 +35,6 @@ export function makeFormHelpers(setFormState: React.Dispatch<React.SetStateActio
     /** Faz merge no formState (raiz). */
     setMany: (patch: Partial<FormState>) => setFormState((s) => ({ ...s, ...patch })),
   };
-}
-
-// Perfil do usuário logado (lido do storage, sem acoplar o Form ao contexto).
-function perfilLogado(): TipoPerfil | null {
-  try {
-    const raw = localStorage.getItem(STORAGE_AUTH);
-    if (!raw) return null;
-    return (JSON.parse(raw) as { perfil?: TipoPerfil }).perfil ?? null;
-  } catch {
-    return null;
-  }
 }
 
 interface Coluna {
@@ -106,11 +93,6 @@ interface FormProps {
   titulo?: string;
   ordenacaoPadrao?: string;
   protegido?: boolean;
-  /**
-   * Perfis autorizados a incluir/alterar/excluir. Quando informado e o perfil
-   * do usuário logado não estiver na lista, o formulário fica somente-leitura.
-   */
-  permissao?: TipoPerfil[];
   sessionManager?: SessionManager;
   getTitulosDaTabela?: () => Coluna[];
   getDadosDaTabela?: (item: unknown) => ReactNode[];
@@ -307,16 +289,10 @@ function AcoesMenu({ children }: { children: ReactNode }) {
 const Form = forwardRef<FormHandle, FormProps>(function Form(props, ref) {
   const { showSuccess, showError, showConfirm } = useToast();
 
-  const podeEditar = useMemo(() => {
-    const porProtecao = props.protegido ? (props.sessionManager?.isMaster ?? false) : true;
-    const porPerfil = !props.permissao || props.permissao.length === 0
-      ? true
-      : (() => {
-          const perfil = perfilLogado();
-          return perfil != null && props.permissao!.includes(perfil);
-        })();
-    return porProtecao && porPerfil;
-  }, [props.protegido, props.sessionManager, props.permissao]);
+  const podeEditar = useMemo(
+    () => (props.protegido ? (props.sessionManager?.isMaster ?? false) : true),
+    [props.protegido, props.sessionManager],
+  );
   const podeIncluir = podeEditar;
   const podeAlterar = podeEditar;
   const podeExcluir = podeEditar;

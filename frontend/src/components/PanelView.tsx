@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { CalendarDays, BookOpen, ClipboardCheck, MessageSquareText, type LucideIcon } from 'lucide-react';
+import { House, type LucideIcon } from 'lucide-react';
 import { AppLogo } from './AppLogo';
 import { UserMenu } from './UserMenu';
 
@@ -11,10 +11,7 @@ interface ItemNav {
 
 const PanelView = () => {
   const itens: ItemNav[] = [
-    { to: '/', label: 'Agenda', icone: CalendarDays },
-    { to: '/disciplinas', label: 'Disciplinas', icone: BookOpen },
-    { to: '/conteudos', label: 'Conteúdos', icone: MessageSquareText },
-    { to: '/avaliacoes', label: 'Avaliações', icone: ClipboardCheck },
+    { to: '/', label: 'Início', icone: House },
   ];
 
   return (
@@ -26,7 +23,7 @@ const PanelView = () => {
           style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: 'inherit' }}
         >
           <AppLogo size={24} />
-          learning
+          Sorteados
         </Link>
         <nav className='sidebar__nav'>
           {itens.map((item) => (
@@ -52,7 +49,7 @@ const PanelView = () => {
           style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: 'inherit' }}
         >
           <AppLogo size={24} />
-          learning
+          Sorteados
         </Link>
         <div className='header__acoes'>
           <UserMenu abrirPara='baixo' />

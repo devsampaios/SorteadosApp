@@ -7,7 +7,7 @@ export interface FiltroAuditoria extends PageOptions {
 }
 
 export type AuditoriaComUsuario = Prisma.AuditoriaGetPayload<{
-  include: { usuario: { select: { id: true; nome: true; email: true } } };
+  include: { usuario: { select: { id: true; nome: true; login: true } } };
 }>;
 
 export interface AuditoriaResponse {

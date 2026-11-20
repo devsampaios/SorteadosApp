@@ -6,15 +6,14 @@ import { Unauthorized, Forbidden } from "../Helper/AppError";
 import { clientIp } from "../Helper/clientIp";
 
 const SESSION_TTL = "7d";
-const MASTER_PROFILE = 1;
 const ACTIVE_STATUS = 1;
 
-// JWT payload shape (contract of signToken): keeps usuarioId/perfil keys.
+// JWT payload shape (contract of signToken).
 interface SessionToken {
   usuarioId: string | number;
 }
 
-export function signToken(payload: { usuarioId: string; perfil: number }): string {
+export function signToken(payload: { usuarioId: string }): string {
   return jwt.sign(payload, config.jwt.secret, { expiresIn: SESSION_TTL });
 }
 
@@ -43,7 +42,7 @@ export async function authenticate(req: Request, _res: Response, next: NextFunct
   try {
     const user = await prisma.usuario.findUnique({
       where: { id: userId },
-      select: { id: true, perfil: true, situacao: true },
+      select: { id: true, situacao: true },
     });
 
     if (!user) {
@@ -57,7 +56,6 @@ export async function authenticate(req: Request, _res: Response, next: NextFunct
 
     req.contexto = {
       usuarioId: user.id.toString(),
-      perfil: user.perfil ?? 2,
       ip: clientIp(req),
       userAgent: req.headers["user-agent"] ?? "",
     };
@@ -65,12 +63,4 @@ export async function authenticate(req: Request, _res: Response, next: NextFunct
   } catch (err) {
     next(err);
   }
-}
-
-export function requireMaster(req: Request, _res: Response, next: NextFunction): void {
-  if (req.contexto?.perfil !== MASTER_PROFILE) {
-    next(new Forbidden("Acesso restrito a administradores"));
-    return;
-  }
-  next();
 }

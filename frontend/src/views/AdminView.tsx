@@ -11,7 +11,7 @@ interface CardAdmin {
 const cartoes: CardAdmin[] = [
 	{
 		titulo: 'Usuários',
-		descricao: 'Gerenciar cadastros, perfis e situações.',
+		descricao: 'Gerenciar logins, nomes e situações.',
 		icone: Users,
 		to: '/admin/usuarios',
 	},
@@ -32,7 +32,7 @@ export default function AdminView() {
 				<div>
 					<h2 style={{ margin: 0 }}>Administração</h2>
 					<p style={{ margin: '4px 0 0', color: 'var(--cor-texto-suave)' }}>
-						Área exclusiva para administradores.
+						Cadastro de usuários e histórico de ações do sistema.
 					</p>
 				</div>
 
